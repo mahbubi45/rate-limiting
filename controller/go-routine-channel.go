@@ -2,24 +2,27 @@ package controller
 
 import (
 	"fmt"
-	"reflect"
 	"runtime"
 )
 
 type User struct {
 	Name string
+	Age  int
 }
 
 func (s *Server) isiDatauser() []User {
 	dataUser := []User{
 		{
 			Name: "user1",
+			Age:  15,
 		},
 		{
 			Name: "user2",
+			Age:  16,
 		},
 		{
 			Name: "user3",
+			Age:  17,
 		},
 	}
 
@@ -40,24 +43,25 @@ func (s *Server) ChannelGoRoutineController() {
 	dataUserStruct := s.isiDatauser()
 
 	// convert dan hanya ambil valuenya saja dari struct user
-	var userStructSlice []string //penampung data yang hanya di ambil fieldnya saja
+	// var userStructSlice []string //penampung data yang hanya di ambil fieldnya saja
+	// for _, users := range dataUserStruct {
+	// 	valueUser := reflect.ValueOf(users)
+	// 	for i := 0; i < valueUser.NumField(); i++ {
+	// 		fieldValue := fmt.Sprintf("%v", valueUser.Field(i).Interface())
+	// 		userStructSlice = append(userStructSlice, fieldValue)
+	// 	}
+	// }
+
+	// dataUserArrayString := userStructSlice
+
 	for _, users := range dataUserStruct {
-		valueUser := reflect.ValueOf(users)
-		for i := 0; i < valueUser.NumField(); i++ {
-			userStructSlice = append(userStructSlice, valueUser.Field(i).String())
-		}
-	}
-
-	dataUserArrayString := userStructSlice
-
-	for _, each := range dataUserArrayString {
-		go func(who string) {
-			var data = fmt.Sprintf("hello %s", who)
+		go func(user User) {
+			var data = fmt.Sprintf("Go routine \n Name : %s,\n Age: %d, \n", user.Name, user.Age)
 			message <- data
-		}(each)
+		}(users)
 	}
 
-	jumlahDataUser := len(dataUserArrayString)
+	jumlahDataUser := len(dataUserStruct)
 
 	//jalankan perulangan sesuai jumlahDataUser dengan cara menghitung len
 	for i := 0; i < jumlahDataUser; i++ {

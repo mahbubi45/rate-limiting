@@ -6,5 +6,6 @@ func main() {
 	controller := controller.Server{}
 
 	// controller.RateLimitingController()
-	controller.ChannelGoRoutineController()
+	// controller.ChannelGoRoutineController()
+	controller.ReadJsonUsersController()
 }
