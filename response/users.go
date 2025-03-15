@@ -1,5 +1,6 @@
 package response
 
+// penampung get dari json
 type Users struct {
 	Users []User `json:"users"`
 }
