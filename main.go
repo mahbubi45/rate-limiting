@@ -7,5 +7,5 @@ func main() {
 
 	// controller.RateLimitingController()
 	// controller.ChannelGoRoutineController()
-	controller.ReadJsonUsersController()
+	controller.TampilkanDataUser()
 }

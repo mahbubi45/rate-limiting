@@ -1,7 +1,11 @@
 package controller
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
+	"os"
+	"rate-limiting/response"
 	"runtime"
 )
 
@@ -10,7 +14,7 @@ type User struct {
 	Age  int
 }
 
-func (s *Server) isiDatauser() []User {
+func (s *Server) IsiDatauser() []User {
 	dataUser := []User{
 		{
 			Name: "user1",
@@ -36,11 +40,22 @@ func (s *Server) printMessage(what chan string) {
 }
 
 func (s *Server) ChannelGoRoutineController() {
+	var user response.Users
+
 	runtime.GOMAXPROCS(2)
 
 	var message = make(chan string)
 
-	dataUserStruct := s.isiDatauser()
+	// dataUserStruct := s.isiDatauser()
+	jsonFile, err := os.Open("json/users.json")
+
+	if err != nil {
+		fmt.Println("gagal mengambail data users.json")
+	}
+
+	fmt.Println("sukses membuka file users.json")
+	// setelah sukses maka di close
+	defer jsonFile.Close()
 
 	// convert dan hanya ambil valuenya saja dari struct user
 	// var userStructSlice []string //penampung data yang hanya di ambil fieldnya saja
@@ -54,14 +69,17 @@ func (s *Server) ChannelGoRoutineController() {
 
 	// dataUserArrayString := userStructSlice
 
-	for _, users := range dataUserStruct {
-		go func(user User) {
+	byteValueUsers, _ := io.ReadAll(jsonFile)
+	json.Unmarshal(byteValueUsers, &user)
+
+	for _, users := range user.Users {
+		go func(user response.User) {
 			var data = fmt.Sprintf("Go routine \n Name : %s,\n Age: %d, \n", user.Name, user.Age)
 			message <- data
 		}(users)
 	}
 
-	jumlahDataUser := len(dataUserStruct)
+	jumlahDataUser := len(user.Users)
 
 	//jalankan perulangan sesuai jumlahDataUser dengan cara menghitung len
 	for i := 0; i < jumlahDataUser; i++ {
