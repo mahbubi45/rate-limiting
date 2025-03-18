@@ -7,5 +7,6 @@ func main() {
 
 	// controller.RateLimitingController()
 	// controller.ChannelGoRoutineController()
-	controller.TampilkanDataUser()
+	// controller.TampilkanDataUserController()
+	controller.AppendSliceTesting()
 }
