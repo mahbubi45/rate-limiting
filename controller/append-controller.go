@@ -24,11 +24,15 @@ func (s *Server) SliceDataTesting() {
 		NilaiC: 0,
 	}
 
-	// testing := []Testing{testings}
+	var total = testings.NilaiA + testings.NilaiB
+
+	testings.NilaiC = total
+
+	testing := []Testing{testings}
 
 	// testingAppend := append(testing, testings)
 
-	fmt.Print("ini data ya : \n", testings, "\n")
+	fmt.Print("ini data ya : \n", testing, "\n")
 
 }
 
@@ -38,22 +42,24 @@ type TotalValueTesting struct {
 
 func (s *Server) AppendSliceTesting() {
 	testings := []Testing{
-		{NilaiA: 10, NilaiB: 15, NilaiC: 20},
-		{NilaiA: 11, NilaiB: 16, NilaiC: 30},
-		{NilaiA: 12, NilaiB: 17, NilaiC: 40},
+		{NilaiA: 10, NilaiB: 15, NilaiC: 20}, //element 1
+		{NilaiA: 11, NilaiB: 16, NilaiC: 30}, //element 2
+		{NilaiA: 12, NilaiB: 17, NilaiC: 40}, //element 3
 	}
 
 	penampungTesting := []Testing{}
+	// var totalDataKeseluruhan int
 	totalDataKeseluruhan := 0
 
 	for _, testing := range testings {
 		penampungTesting = append(penampungTesting, testing)
+
+		// fmt.Print("ini data append ya : \n", penampungTesting, "\n")
 		fmt.Print("ini data append ya : \n", testing, "\n")
 		// fmt.Print("ini total keseluruhan data ketika di jumlah ya : \n", totalDataKeseluruhan, "\n")
 
 		totalDataKeseluruhan += testing.NilaiA + testing.NilaiB + testing.NilaiC
 		fmt.Println("Setelah perkalian:", totalDataKeseluruhan)
-
 	}
 
 	// jika total nilai 50 maka nilai B
