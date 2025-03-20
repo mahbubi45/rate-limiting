@@ -10,7 +10,6 @@ import (
 
 func (s *Server) LogInController() {
 	reader := bufio.NewReader(os.Stdin)
-
 	for {
 		fmt.Print("masukkan email: ")
 		inputEmailUser, _ := reader.ReadString('\n')

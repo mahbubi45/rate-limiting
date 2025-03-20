@@ -36,11 +36,7 @@ func (s *Server) SliceDataTesting() {
 
 }
 
-type TotalValueTesting struct {
-	Total int
-}
-
-func (s *Server) AppendSliceTesting() {
+func (s *Server) AppendSliceTestingController() {
 	testings := []Testing{
 		{NilaiA: 10, NilaiB: 15, NilaiC: 20}, //element 1
 		{NilaiA: 11, NilaiB: 16, NilaiC: 30}, //element 2
@@ -55,12 +51,14 @@ func (s *Server) AppendSliceTesting() {
 		penampungTesting = append(penampungTesting, testing)
 
 		// fmt.Print("ini data append ya : \n", penampungTesting, "\n")
-		fmt.Print("ini data append ya : \n", testing, "\n")
+		// fmt.Print("ini data append ya : \n", testing, "\n")
 		// fmt.Print("ini total keseluruhan data ketika di jumlah ya : \n", totalDataKeseluruhan, "\n")
 
 		totalDataKeseluruhan += testing.NilaiA + testing.NilaiB + testing.NilaiC
 		fmt.Println("Setelah perkalian:", totalDataKeseluruhan)
 	}
+
+	fmt.Print("ini data append ya : \n", penampungTesting, "\n")
 
 	// jika total nilai 50 maka nilai B
 	if totalDataKeseluruhan == 50 && totalDataKeseluruhan <= 50 {
@@ -72,5 +70,4 @@ func (s *Server) AppendSliceTesting() {
 	} else if totalDataKeseluruhan > 90 && totalDataKeseluruhan <= 10000000000 {
 		fmt.Print("nilai kamu  A+ : ", totalDataKeseluruhan, "\n")
 	}
-
 }

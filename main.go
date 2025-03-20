@@ -8,5 +8,6 @@ func main() {
 	// controller.RateLimitingController()
 	// controller.ChannelGoRoutineController()
 	// controller.TampilkanDataUserController()
-	controller.LogInController()
+	// controller.AppendSliceTestingController()
+	controller.RBACController()
 }
