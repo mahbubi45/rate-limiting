@@ -8,7 +8,7 @@ type Users struct {
 type User struct {
 	Name   string `json:"name"`
 	Type   string `json:"type"`
-	Age    int    `json:"Age"`
+	Age    int    `json:"age"`
 	Social Social `json:"social"`
 }
 

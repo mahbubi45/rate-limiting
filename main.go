@@ -9,5 +9,6 @@ func main() {
 	// controller.ChannelGoRoutineController()
 	// controller.TampilkanDataUserController()
 	// controller.AppendSliceTestingController()
-	controller.RBACController()
+	// controller.RBACController()
+	controller.ReadJsonUsersController()
 }

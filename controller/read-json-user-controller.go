@@ -39,7 +39,7 @@ func (s *Server) ReadJsonUsersController() {
 	// }
 
 	// Mengubah struct kembali ke JSON dengan format rapi
-	jsonData, err := json.MarshalIndent(jsonFile, "", "  ")
+	jsonData, err := json.MarshalIndent(users, "", "  ")
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
