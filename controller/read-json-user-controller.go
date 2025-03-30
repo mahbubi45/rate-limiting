@@ -30,6 +30,11 @@ func (s *Server) ReadJsonUsersController() {
 	// Mengubah JSON menjadi struct
 	json.Unmarshal(byteValueUsers, &users)
 
+	// menaruh urutan
+	for index := range users.Users {
+		users.Users[index].Number = index + 1
+	}
+
 	// for i := 0; i < len(users.Users); i++ {
 	// 	fmt.Println("User Name: " + users.Users[i].Name)
 	// 	fmt.Println("User Type: " + users.Users[i].Type)

@@ -10,5 +10,5 @@ func main() {
 	// controller.TampilkanDataUserController()
 	// controller.AppendSliceTestingController()
 	// controller.RBACController()
-	controller.ReadJsonUsersController()
+	controller.PerhitunganController()
 }
